@@ -1,3 +1,4 @@
+import 'package:aplikasi_gaji_pegawai/ui/page/add_pegawai.dart';
 import 'package:aplikasi_gaji_pegawai/ui/page/list_pegawai_page.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: ListPegawaiPage(),
+      routes: {
+        AddPegawaiPage.routeName: (ctx) => AddPegawaiPage(),
+      },
     );
   }
 }
