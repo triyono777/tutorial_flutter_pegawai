@@ -16,4 +16,24 @@ class PegawaiController {
     pegawaiModel = PegawaiModel.fromJson(jsonDecode(response.body));
     return pegawaiModel;
   }
+
+  Future<bool> addPegawai({
+    @required String nama,
+    @required String gaji,
+    @required String umur,
+  }) async {
+    String url = Utils.addPegawai;
+    response = await http.post(url, body: {
+      'employee_name': nama,
+      'employee_salary': gaji,
+      'employee_age': umur
+    });
+
+    final hasil = jsonDecode(response.body);
+    print(hasil);
+    if (hasil['status'] == 'success') {
+      return true;
+    }
+    return false;
+  }
 }
