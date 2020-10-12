@@ -1,3 +1,4 @@
+import 'package:aplikasi_gaji_pegawai/ui/page/list_pegawai_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,26 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Aplikasi Pegawai',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('Center')),
+      home: ListPegawaiPage(),
     );
   }
 }
