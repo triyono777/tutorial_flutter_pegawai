@@ -23,14 +23,24 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
       appBar: AppBar(
         title: Text('List Pegawai'),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (ctx, index) => ListTile(
-          title: Text('Nama'),
-          subtitle: Text('Umur'),
-          trailing: Text('Gaji'),
-        ),
-      ),
+      body: pegawaiModel == null
+          ? Center(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                Text('loading'),
+              ],
+            ))
+          : ListView.builder(
+              itemCount: pegawaiModel.data.length,
+              itemBuilder: (ctx, index) => ListTile(
+                title: Text('Nama ${pegawaiModel.data[index].employeeName}'),
+                subtitle: Text('Umur ${pegawaiModel.data[index].employeeAge}'),
+                trailing:
+                    Text('Gaji ${pegawaiModel.data[index].employeeSalary}'),
+              ),
+            ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
