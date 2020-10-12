@@ -16,7 +16,18 @@ class _AddPegawaiPageState extends State<AddPegawaiPage> {
       ),
       body: Column(
         children: [
-          TemplateTextFormField(),
+          TemplateTextFormField(
+            icon: Icons.person,
+            label: 'Nama',
+          ),
+          TemplateTextFormField(
+            icon: Icons.cake,
+            label: 'Umur',
+          ),
+          TemplateTextFormField(
+            icon: Icons.monetization_on,
+            label: 'Gaji',
+          ),
         ],
       ),
     );
