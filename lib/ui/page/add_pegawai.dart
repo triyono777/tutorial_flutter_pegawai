@@ -1,3 +1,4 @@
+import 'package:aplikasi_gaji_pegawai/ui/widgets/template_form_field.dart';
 import 'package:flutter/material.dart';
 
 class AddPegawaiPage extends StatefulWidget {
@@ -17,25 +18,6 @@ class _AddPegawaiPageState extends State<AddPegawaiPage> {
         children: [
           TemplateTextFormField(),
         ],
-      ),
-    );
-  }
-}
-
-class TemplateTextFormField extends StatelessWidget {
-  const TemplateTextFormField({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'Nama',
-        prefixIcon: Icon(Icons.person),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
       ),
     );
   }
