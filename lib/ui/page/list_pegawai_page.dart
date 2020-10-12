@@ -32,13 +32,17 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                 Text('loading'),
               ],
             ))
-          : ListView.builder(
-              itemCount: pegawaiModel.data.length,
-              itemBuilder: (ctx, index) => ListTile(
-                title: Text('Nama ${pegawaiModel.data[index].employeeName}'),
-                subtitle: Text('Umur ${pegawaiModel.data[index].employeeAge}'),
-                trailing:
-                    Text('Gaji ${pegawaiModel.data[index].employeeSalary}'),
+          : RefreshIndicator(
+              onRefresh: () => getPegawai(),
+              child: ListView.builder(
+                itemCount: pegawaiModel.data.length,
+                itemBuilder: (ctx, index) => ListTile(
+                  title: Text('Nama ${pegawaiModel.data[index].employeeName}'),
+                  subtitle:
+                      Text('Umur ${pegawaiModel.data[index].employeeAge}'),
+                  trailing:
+                      Text('Gaji ${pegawaiModel.data[index].employeeSalary}'),
+                ),
               ),
             ),
       floatingActionButton: FloatingActionButton(
