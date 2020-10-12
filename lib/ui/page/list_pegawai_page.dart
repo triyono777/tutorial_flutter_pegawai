@@ -1,3 +1,5 @@
+import 'package:aplikasi_gaji_pegawai/controllers/pegawai_controllers.dart';
+import 'package:aplikasi_gaji_pegawai/models/pegawai_model.dart';
 import 'package:aplikasi_gaji_pegawai/ui/page/add_pegawai.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,14 @@ class ListPegawaiPage extends StatefulWidget {
 }
 
 class _ListPegawaiPageState extends State<ListPegawaiPage> {
+  PegawaiModel pegawaiModel;
+
+  @override
+  void initState() {
+    super.initState();
+    getPegawai();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,5 +38,13 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
         },
       ),
     );
+  }
+
+  getPegawai() async {
+    PegawaiController().getListPegawai().then((value) {
+      setState(() {
+        pegawaiModel = value;
+      });
+    });
   }
 }
