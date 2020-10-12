@@ -43,8 +43,14 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
             ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).pushNamed(AddPegawaiPage.routeName);
+        onPressed: () async {
+          Navigator.of(context)
+              .pushNamed(
+                AddPegawaiPage.routeName,
+              )
+              .then(
+                (value) => getPegawai(),
+              );
         },
       ),
     );
