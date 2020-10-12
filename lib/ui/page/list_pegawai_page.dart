@@ -1,3 +1,4 @@
+import 'package:aplikasi_gaji_pegawai/ui/page/add_pegawai.dart';
 import 'package:flutter/material.dart';
 
 class ListPegawaiPage extends StatefulWidget {
@@ -19,6 +20,12 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
           subtitle: Text('Umur'),
           trailing: Text('Gaji'),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddPegawaiPage.routeName);
+        },
       ),
     );
   }
