@@ -1,6 +1,7 @@
 import 'package:aplikasi_gaji_pegawai/controllers/pegawai_controllers.dart';
 import 'package:aplikasi_gaji_pegawai/models/pegawai_model.dart';
 import 'package:aplikasi_gaji_pegawai/ui/page/add_pegawai.dart';
+import 'package:aplikasi_gaji_pegawai/ui/page/update_pegawai_page.dart';
 import 'package:flutter/material.dart';
 
 class ListPegawaiPage extends StatefulWidget {
@@ -36,12 +37,27 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
               onRefresh: () => getPegawai(),
               child: ListView.builder(
                 itemCount: pegawaiModel.data.length,
-                itemBuilder: (ctx, index) => ListTile(
-                  title: Text('Nama ${pegawaiModel.data[index].employeeName}'),
-                  subtitle:
-                      Text('Umur ${pegawaiModel.data[index].employeeAge}'),
-                  trailing:
-                      Text('Gaji ${pegawaiModel.data[index].employeeSalary}'),
+                itemBuilder: (ctx, index) => GestureDetector(
+                  onTap: () async {
+                    await Navigator.of(context)
+                        .push(MaterialPageRoute(
+                          builder: (ctx) => UpdatePegawaiPage(
+                            id: '${pegawaiModel.data[index].id}',
+                            gaji: '${pegawaiModel.data[index].employeeSalary}',
+                            umur: '${pegawaiModel.data[index].employeeAge}',
+                            nama: '${pegawaiModel.data[index].employeeName}',
+                          ),
+                        ))
+                        .then((value) => getPegawai());
+                  },
+                  child: ListTile(
+                    title:
+                        Text('Nama ${pegawaiModel.data[index].employeeName}'),
+                    subtitle:
+                        Text('Umur ${pegawaiModel.data[index].employeeAge}'),
+                    trailing:
+                        Text('Gaji ${pegawaiModel.data[index].employeeSalary}'),
+                  ),
                 ),
               ),
             ),
