@@ -50,17 +50,20 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                         ))
                         .then((value) => getPegawai());
                   },
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    child: Card(
-                      child: ListTile(
-                        title: Text(
-                            'Nama ${pegawaiModel.data[index].employeeName}'),
-                        subtitle: Text(
-                            'Umur ${pegawaiModel.data[index].employeeAge}'),
-                        trailing: Text(
-                            'Gaji ${pegawaiModel.data[index].employeeSalary}'),
+                  child: Dismissible(
+                    key: UniqueKey(),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      child: Card(
+                        child: ListTile(
+                          title: Text(
+                              'Nama ${pegawaiModel.data[index].employeeName}'),
+                          subtitle: Text(
+                              'Umur ${pegawaiModel.data[index].employeeAge}'),
+                          trailing: Text(
+                              'Gaji ${pegawaiModel.data[index].employeeSalary}'),
+                        ),
                       ),
                     ),
                   ),
