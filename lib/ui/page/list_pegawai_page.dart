@@ -81,6 +81,21 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                           .deletePegawai(id: pegawaiModel.data[index].id)
                           .then((value) => getPegawai());
                     },
+                    background: Container(
+                      color: Colors.red,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
