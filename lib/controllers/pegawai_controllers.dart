@@ -36,4 +36,27 @@ class PegawaiController {
     }
     return false;
   }
+
+  Future<bool> updatePegawai({
+    @required String nama,
+    @required String gaji,
+    @required String umur,
+    @required String id,
+  }) async {
+    String url = Utils.updatePegawai;
+    response = await http.post(url, body: {
+      'id': id,
+      'employee_name': nama,
+      'employee_salary': gaji,
+      'employee_age': umur
+    });
+
+    final hasil = jsonDecode(response.body);
+    print(hasil);
+    if (hasil['status'] == 'success') {
+      return true;
+    }
+
+    return false;
+  }
 }
