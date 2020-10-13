@@ -76,6 +76,11 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                           });
                       return res;
                     },
+                    onDismissed: (value) {
+                      PegawaiController()
+                          .deletePegawai(id: pegawaiModel.data[index].id)
+                          .then((value) => getPegawai());
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
