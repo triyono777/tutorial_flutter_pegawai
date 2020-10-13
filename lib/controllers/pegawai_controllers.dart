@@ -59,4 +59,11 @@ class PegawaiController {
 
     return false;
   }
+
+  Future<bool> deletePegawai({@required String id}) async {
+    String url = Utils.deletePegawai;
+    response = await http.get(url + '?id=$id');
+
+    return true;
+  }
 }
