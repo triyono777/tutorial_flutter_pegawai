@@ -52,6 +52,30 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                   },
                   child: Dismissible(
                     key: UniqueKey(),
+                    direction: DismissDirection.endToStart,
+                    confirmDismiss: (DismissDirection direction) async {
+                      final bool res = await showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Konfirmasi'),
+                              content: Text('Kamu Yakin?'),
+                              actions: <Widget>[
+                                FlatButton(
+                                  onPressed: () =>
+                                      Navigator.of(context).pop(true),
+                                  child: Text('HAPUS'),
+                                ),
+                                FlatButton(
+                                  onPressed: () =>
+                                      Navigator.of(context).pop(false),
+                                  child: Text('BATALKAN'),
+                                )
+                              ],
+                            );
+                          });
+                      return res;
+                    },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
