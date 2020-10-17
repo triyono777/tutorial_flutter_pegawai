@@ -12,7 +12,8 @@ class ListPegawaiPage extends StatelessWidget {
         title: Text('List Pegawai'),
       ),
       body: RefreshIndicator(
-        onRefresh: () => Provider.of(context).getListPegawai(),
+        onRefresh: () => Provider.of<PegawaiController>(context, listen: false)
+            .getListPegawai(),
         child: FutureBuilder(
             future: Provider.of<PegawaiController>(context, listen: false)
                 .getListPegawai(),
@@ -64,7 +65,7 @@ class ListPegawaiPage extends StatelessWidget {
                         return res;
                       },
                       onDismissed: (value) {
-                        PegawaiController().deletePegawai(
+                        Provider.of<PegawaiController>(context).deletePegawai(
                             id: data.pegawaiModel.data[index].id);
                       },
                       background: Container(
