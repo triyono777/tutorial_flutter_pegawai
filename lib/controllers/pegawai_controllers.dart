@@ -5,7 +5,7 @@ import 'package:aplikasi_gaji_pegawai/utils/utils.dart';
 
 import 'package:http/http.dart' as http;
 
-class PegawaiController {
+class PegawaiController extends ChangeNotifier {
   PegawaiModel pegawaiModel;
   http.Response response;
 
@@ -14,6 +14,7 @@ class PegawaiController {
     response = await http.get(url);
 
     pegawaiModel = PegawaiModel.fromJson(jsonDecode(response.body));
+    notifyListeners();
     return pegawaiModel;
   }
 

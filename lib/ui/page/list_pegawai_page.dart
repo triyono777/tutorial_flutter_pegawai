@@ -3,20 +3,10 @@ import 'package:aplikasi_gaji_pegawai/models/pegawai_model.dart';
 import 'package:aplikasi_gaji_pegawai/ui/page/add_pegawai.dart';
 import 'package:aplikasi_gaji_pegawai/ui/page/update_pegawai_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ListPegawaiPage extends StatefulWidget {
-  @override
-  _ListPegawaiPageState createState() => _ListPegawaiPageState();
-}
-
-class _ListPegawaiPageState extends State<ListPegawaiPage> {
+class ListPegawaiPage extends StatelessWidget {
   PegawaiModel pegawaiModel;
-
-  @override
-  void initState() {
-    super.initState();
-    getPegawai();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +24,19 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
               ],
             ))
           : RefreshIndicator(
-              onRefresh: () => getPegawai(),
+              onRefresh: () => Provider.of(context).getListPegawai(),
               child: ListView.builder(
                 itemCount: pegawaiModel.data.length,
                 itemBuilder: (ctx, index) => GestureDetector(
                   onTap: () async {
-                    await Navigator.of(context)
-                        .push(MaterialPageRoute(
-                          builder: (ctx) => UpdatePegawaiPage(
-                            id: '${pegawaiModel.data[index].id}',
-                            gaji: '${pegawaiModel.data[index].employeeSalary}',
-                            umur: '${pegawaiModel.data[index].employeeAge}',
-                            nama: '${pegawaiModel.data[index].employeeName}',
-                          ),
-                        ))
-                        .then((value) => getPegawai());
+                    await Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => UpdatePegawaiPage(
+                        id: '${pegawaiModel.data[index].id}',
+                        gaji: '${pegawaiModel.data[index].employeeSalary}',
+                        umur: '${pegawaiModel.data[index].employeeAge}',
+                        nama: '${pegawaiModel.data[index].employeeName}',
+                      ),
+                    ));
                   },
                   child: Dismissible(
                     key: UniqueKey(),
@@ -78,8 +66,7 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
                     },
                     onDismissed: (value) {
                       PegawaiController()
-                          .deletePegawai(id: pegawaiModel.data[index].id)
-                          .then((value) => getPegawai());
+                          .deletePegawai(id: pegawaiModel.data[index].id);
                     },
                     background: Container(
                       color: Colors.red,
@@ -117,23 +104,11 @@ class _ListPegawaiPageState extends State<ListPegawaiPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () async {
-          Navigator.of(context)
-              .pushNamed(
-                AddPegawaiPage.routeName,
-              )
-              .then(
-                (value) => getPegawai(),
-              );
+          Navigator.of(context).pushNamed(
+            AddPegawaiPage.routeName,
+          );
         },
       ),
     );
-  }
-
-  getPegawai() async {
-    PegawaiController().getListPegawai().then((value) {
-      setState(() {
-        pegawaiModel = value;
-      });
-    });
   }
 }
