@@ -33,6 +33,7 @@ class PegawaiController extends ChangeNotifier {
     final hasil = jsonDecode(response.body);
     print(hasil);
     if (hasil['status'] == 'success') {
+      getListPegawai();
       return true;
     }
     return false;
@@ -53,8 +54,9 @@ class PegawaiController extends ChangeNotifier {
     });
 
     final hasil = jsonDecode(response.body);
-    print(hasil);
+
     if (hasil['status'] == 'success') {
+      getListPegawai();
       return true;
     }
 
@@ -64,6 +66,7 @@ class PegawaiController extends ChangeNotifier {
   Future<bool> deletePegawai({@required String id}) async {
     String url = Utils.deletePegawai;
     response = await http.get(url + '?id=$id');
+    getListPegawai();
 
     return true;
   }

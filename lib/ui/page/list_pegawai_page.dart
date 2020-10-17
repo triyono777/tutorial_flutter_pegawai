@@ -65,8 +65,9 @@ class ListPegawaiPage extends StatelessWidget {
                         return res;
                       },
                       onDismissed: (value) {
-                        Provider.of<PegawaiController>(context).deletePegawai(
-                            id: data.pegawaiModel.data[index].id);
+                        Provider.of<PegawaiController>(context, listen: false)
+                            .deletePegawai(
+                                id: data.pegawaiModel.data[index].id);
                       },
                       background: Container(
                         color: Colors.red,

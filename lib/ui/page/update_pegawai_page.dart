@@ -1,6 +1,7 @@
 import 'package:aplikasi_gaji_pegawai/controllers/pegawai_controllers.dart';
 import 'package:aplikasi_gaji_pegawai/ui/widgets/template_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UpdatePegawaiPage extends StatefulWidget {
   static const String routeName = '/UpdatePegawaiPage';
@@ -74,7 +75,7 @@ class _UpdatePegawaiPageState extends State<UpdatePegawaiPage> {
               textColor: Colors.white,
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  PegawaiController()
+                  Provider.of<PegawaiController>(context, listen: false)
                       .updatePegawai(
                     id: widget.id,
                     nama: namaController.text,
