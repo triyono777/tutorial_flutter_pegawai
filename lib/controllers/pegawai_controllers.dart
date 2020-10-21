@@ -5,7 +5,7 @@ import 'package:aplikasi_gaji_pegawai/utils/utils.dart';
 
 import 'package:http/http.dart' as http;
 
-class PegawaiController {
+class PegawaiController extends ChangeNotifier {
   PegawaiModel pegawaiModel;
   http.Response response;
 
@@ -14,6 +14,7 @@ class PegawaiController {
     response = await http.get(url);
 
     pegawaiModel = PegawaiModel.fromJson(jsonDecode(response.body));
+    notifyListeners();
     return pegawaiModel;
   }
 
@@ -32,6 +33,7 @@ class PegawaiController {
     final hasil = jsonDecode(response.body);
     print(hasil);
     if (hasil['status'] == 'success') {
+      getListPegawai();
       return true;
     }
     return false;
@@ -52,8 +54,9 @@ class PegawaiController {
     });
 
     final hasil = jsonDecode(response.body);
-    print(hasil);
+
     if (hasil['status'] == 'success') {
+      getListPegawai();
       return true;
     }
 
@@ -63,6 +66,7 @@ class PegawaiController {
   Future<bool> deletePegawai({@required String id}) async {
     String url = Utils.deletePegawai;
     response = await http.get(url + '?id=$id');
+    getListPegawai();
 
     return true;
   }
